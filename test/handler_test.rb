@@ -11,6 +11,14 @@ class HandlerTest < Minitest::Test
     skip
   end
 
-  def 
+  def test_normalize_zip_codes
+    skip
+    numbers = [234, 10, 9119, 38881]
+    zip_codes = []
+    numbers.each do |number|
+      zip_codes << "%05d" % (number)
+    end
+    assert_equal ["00234", "00010", "09119", "38881"], zip_codes
+  end
 
 end
