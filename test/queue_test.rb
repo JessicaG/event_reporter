@@ -34,18 +34,24 @@ class QueueTest < Minitest::Test
   def test_can_clear_the_queue?
     skip
     queue = Queue.new
+    Queue.clear
+    assert_equal :true
 
   end
 
   def test_can_print_out_the_queue_with_header_data
     skip
     queue = Queue.new
+    Queue.header_row.print
+    assert_equal queue.print
 
   end
 
   def test_can_print_by_attribute
     skip
     queue = Queue.new
+    Queue.attribute_print
+  
 
   end
 
