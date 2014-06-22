@@ -3,6 +3,10 @@ require_relative '../lib/queue'
 
 class HandlerTest < Minitest::Test
 
+  def test_it_can_load_a_new_file
+    Handler.new
+  end
+
   def test_can_search_case_insensitive_data
     skip
   end

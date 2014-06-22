@@ -51,6 +51,7 @@ class QueueTest < Minitest::Test
     skip
     queue = Queue.new
     Queue.attribute_print
+  .
   
 
   end
