@@ -1,5 +1,5 @@
 require_relative './test_helper'
-require_relative '../lib/queue'
+require_relative '../lib/Command'
 
 class HandlerTest < Minitest::Test
 
