@@ -1,10 +1,10 @@
 require 'pry'
 
 class Command
-attr_reader :filename
+  attr_reader :filename
 
-  def initialize(filename)
-    @filename = filename
+  def initialize(repo)
+    @filename = repo
   end
 
   def load_file(filename)
@@ -12,8 +12,9 @@ attr_reader :filename
   end
 
   def general_help
-    binding.pry
-    print "Here are your options:"
+    output = "Here are your options:"
+    print output
+    output
   end
   #
   # def help_command
