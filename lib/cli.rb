@@ -1,7 +1,6 @@
 class CLI
-  attr_reader :command
+  attr_reader :command,
               :event_reporter
-              :
 
   def initialize
     @command = ""
