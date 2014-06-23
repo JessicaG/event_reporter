@@ -21,8 +21,8 @@ class CommandTest < Minitest::Test
   def test_can_load_help_command_instructions
     skip
     command = Command.new
-    Command.command_instructions
-    assert_equal "(s)ave to que, (c)ount output, (cl)ear output (p)rint output", Command.command_instructions
+    command.command_instructions
+    assert_equal "(s)ave to repo, (c)ount output, (cl)ear output (p)rint output", Command.command_instructions
   end
 
   def test_can_count_record_output_in_current_command
