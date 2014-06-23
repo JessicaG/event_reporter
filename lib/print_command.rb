@@ -1,3 +1,4 @@
+
 class PrintCommand
 
   #def queue_print
@@ -11,4 +12,14 @@ class PrintCommand
   # def queue_save_to_filename
   #   #export current queue to specified filename as a CSV
   # end
+
+  def general_help
+    output = "Here are your options:"
+    print output
+    output
+  end
+  
+  def help_command_instructions
+
+  end
 end

@@ -1,38 +1,53 @@
-require 'pry'
-
 class Command
-  attr_reader :filename
+  attr_reader :repo, :queue, :filename
 
-  def initialize(repo)
-    @filename = repo
+  def initialize(filename)
+    @records  = AttendeeRepo.new.build_records
+    @queue    = []
+    @filename = filename
   end
 
   def load_file(filename)
     @filename
   end
-
-  def general_help
-    output = "Here are your options:"
-    print output
-    output
-  end
-
-  def find_by(attribute, value)
-    objects.select {|object| object.send(attribute) == value}
-  end
+  #
+  # def find_by(attribute, value)
+  #   objects.select {|object| object.send(attribute) == value}
+  # end
 
   def queue_count
-    records.select {|records| record.count}
+    @queue.count
   end
 
-  ##can we use drop for all records in array?##
-  def queue_clear
-    records.selec{|records| record.delete}
+  def find_by_first_name(value)
+    @queue << records.select { |record| record.first_name == value }
   end
 
-  def records.clear
-    @
-  end
+  # ##can we use drop for all records in array?##
+  # def queue_clear
+  #   records.select {|records| record.delete}
+  # end
+
+
+
+
+
+  # def find_by(attribute, value)
+  #   objects.select {|object| object.send(attribute) == value}
+  # end
+  #
+  # def queue_count
+  #   records.select {|records| record.count}
+  # end
+  #
+  # ##can we use drop for all records in array?##
+  # def queue_clear
+  #   records.select {|records| record.delete}
+  # end
+  #
+  # # def records.clear
+  #
+  # end
 
 
     # def help_command

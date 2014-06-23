@@ -1,23 +1,45 @@
 class Cleaner
+
+  def id(id)
+    id
+  end
+
+  def regdate(regdate)
+    regdate
+  end
+
   def first_name(first_name)
-    first_name.downcase.capitalize
+    first_name
   end
 
   def last_name(last_name)
-    last_name.downcase.capitalize
+    last_name
   end
 
-  def home_phone(phone)
-    homephone.to_s.gsub(".()-,+_ ")
-    if homephone.length < 10
+  def email_address(email_address)
+    email_address
+  end
+
+  def home_phone(home_phone)
+    home_phone = home_phone.to_s
+    home_phone.gsub!(".()-,+_ ", '')
+    if home_phone.length < 10
       "0000000000"
     else
-      homephone[-9..-1]
+      home_phone[-9..-1]
     end
   end
 
+  def street(street)
+    street
+  end
+
+  def city(city)
+    city
+  end
+
   def state(state)
-    state.upcase
+    state
   end
 
   def zipcode(zipcode)
