@@ -92,26 +92,15 @@ class CommandTest < Minitest::Test
     Command = Command.new
     Command.header_row.print
     assert_equal Command.print
-
   end
 
   def test_can_print_by_attribute
     skip
     Command = Command.new
     Command.attribute_print
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
-  .
-
->>>>>>> ca8752e99869cb0901a6db2e366ccf25bdf02f41
-
->>>>>>> 08649a8956bb8d870b0c853d5593fda403dd29a8
   end
 
-  def test_can_save_Command_to_csv
+  def test_can_save_command_to_csv
     skip
     Command = Command.new
 
