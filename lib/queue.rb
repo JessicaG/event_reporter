@@ -1,4 +1,4 @@
-class Queue
+class Command
 
   def initialize(filename)
     @filename = filename
@@ -7,6 +7,8 @@ class Queue
   def load_file(filename)
     @filename
   end
+
+
 
 end
 
