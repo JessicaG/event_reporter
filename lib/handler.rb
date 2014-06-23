@@ -1,5 +1,20 @@
 require 'csv'
 
+class Handler
+  attr_reader :filename
+
+  def initialize(filename)
+    @filename = filename
+  end
+
+  def format
+    contents = CSV.open @filename, headers: true, header_converters: :symbol
+    contents.each do |row|
+    name = row[:first_name]
+    end
+  end
+end
+
   def clean_zipcode(zipcode)
     if zipcode.nil?
       "00000"
@@ -42,16 +57,16 @@ require 'csv'
     ##gem?
   end
 end
-
-puts "EventReporter initialized."
-
-contents = CSV.open 'event_attendees.csv', headers: true, header_converters: :symbol
-
-contents.each do |row|
-  first_name = clean_first_name(row[:first_name])
-  last_name = clean_last_name(row[:last_name])
-  address = address_builder(row[:address])
-  zipcode = clean_zipcode(row[:zipcode])
-
-  puts "#{last_name}, #{first_name}, #{address}, #{zipcode}"
+#
+# puts "EventReporter initialized."
+#
+# contents = CSV.open 'event_attendees.csv', headers: true, header_converters: :symbol
+#
+# contents.each do |row|
+#   first_name = clean_first_name(row[:first_name])
+#   last_name = clean_last_name(row[:last_name])
+#   address = address_builder(row[:address])
+#   zipcode = clean_zipcode(row[:zipcode])
+#
+#   puts "#{last_name}, #{first_name}, #{address}, #{zipcode}"
 end

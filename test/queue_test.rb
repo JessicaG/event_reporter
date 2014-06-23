@@ -3,6 +3,17 @@ require_relative '../lib/queue'
 
 class QueueTest < Minitest::Test
 
+  def test_it_exists
+    assert Handler
+  end
+
+  def test_it_takes_an_argument
+    filename = 'event_attendees.csv'
+    repo = Handler.new(filename)
+    assert_equal 'event_attendees.csv', repo.filename
+  end
+
+
   def test_can_load_file?
     skip
     queue = Queue.new upload?
@@ -51,9 +62,6 @@ class QueueTest < Minitest::Test
     skip
     queue = Queue.new
     Queue.attribute_print
-  .
-  
-
   end
 
   def test_can_save_queue_to_csv

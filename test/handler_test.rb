@@ -7,6 +7,10 @@ class HandlerTest < Minitest::Test
     Handler.new
   end
 
+  def test_it_exists
+    assert LoadCommand
+  end
+
   def test_can_search_case_insensitive_data
     skip
   end
@@ -23,6 +27,12 @@ class HandlerTest < Minitest::Test
       zip_codes << "%05d" % (number)
     end
     assert_equal ["00234", "00010", "09119", "38881"], zip_codes
+  end
+
+  def test_it_takes_an_command_filename
+    filename = "people.csv"
+    command = Handler.new(filename)
+    assert_equal "people.csv", command.load_file(filename)
   end
 
 end
