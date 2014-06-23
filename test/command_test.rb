@@ -16,29 +16,35 @@ class CommandTest < Minitest::Test
   def test_can_count_record_output_in_current_queue
     filename = 'event_attendees.csv'
     command  = Command.new(filename)
-    assert_equal 2, command.queue_count
+    @queue   = ["one","two","three"]
+    assert_equal 3, command.queue_count
   end
 
-  def test_can_clear_the_command?
-    skip
-    command = Command.new
-    Command.clear
-    assert true
+  def test_can_clear_the_queue
+    filename = 'event_attendees.csv'
+    command  = Command.new(filename)
+    @queue   = ["one","two","three"]
+    assert_equal [], command.queue_clear
   end
 
-  def test_can_save_command_to_csv
-    skip
-    command = Command.new
+  def test_can_save_queue_to_csv
+    filename = 'event_attendees.csv'
+    command  = Command.new(filename)
+
   end
 
   def test_can_search_csv_by_attribute
     skip
-    command = Command.new
+    filename = 'event_attendees.csv'
+    command  = Command.new(filename)
+
   end
 
   def test_csv_objects_have_an_id
     skip
-    command = Command.new
+    filename = 'event_attendees.csv'
+    command  = Command.new(filename)
+
   end
 
 end
