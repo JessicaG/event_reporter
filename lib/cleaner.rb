@@ -7,7 +7,6 @@ class Cleaner
     last_name.downcase.capitalize
   end
 
-  #refactor?#
   def home_phone(phone)
     homephone.to_s.gsub(".()-,+_ ")
     if homephone.length < 10
@@ -17,11 +16,6 @@ class Cleaner
     end
   end
 
-  #is there a gem for this?#
-  # def email_address(Email_Address)
-  #   email_address.include!(@ .)
-  # end
-
   def state(state)
     state.upcase
   end
@@ -30,3 +24,10 @@ class Cleaner
     zipcode.to_s.rjust(5,"0")[0..4]
   end
 end
+
+##extras if time permits##
+
+  #is there a gem for this?#
+  # def email_address(Email_Address)
+  #   email_address.include!(@ .)
+  # end

@@ -5,10 +5,10 @@ class Attendee
   end
 
   attr_reader :id,
-              :registration,
+              :regdate,
               :first_name,
               :last_name,
-              :email,
+              :email_address,
               :home_phone,
               :street,
               :city,
@@ -16,15 +16,17 @@ class Attendee
               :zipcode
 
   def initialize(row, cleaner)
-    @id           = row[:id]
-    @registration = row[:regdate]
-    @first_name   = row[:first_name]
-    @last_name    = row[:last_name]
-    @email        = row[:email_address]
-    @home_phone   = cleaner.home_phone(row[:home_phone])
-    @street       = row[:street]
-    @city         = row[:city]
-    @state        = row[:state]
-    @zipcode      = cleaner.zipcode(row[:zipcode])
+    @id             = cleaner.id(row[:id])
+    @regdate        = cleaner.regdate(row[:regdate])
+    @first_name     = cleaner.first_name(row[:first_name])
+    @last_name      = cleaner.last_name(row[:last_name])
+    @email_address  = cleaner.email_address(row[:email_address])
+    @home_phone     = cleaner.home_phone(row[:home_phone])
+    @street         = cleaner.street(row[:street])
+    @city           = cleaner.city(row[:city])
+    @state          = cleaner.state(row[:state])
+    @zipcode        = cleaner.zipcode(row[:zipcode])
   end
+
+  
 end
