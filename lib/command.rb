@@ -35,24 +35,25 @@ class Command
 
 
 
-def save_thank_you_letters(id,form_letter)
-  Dir.mkdir("output") unless Dir.exists?("output")
-
-  filename = "output/thanks_#{id}.html"
-
-  File.open(filename,'w') do |file|
-    file.puts form_letter
-  end
-end
-
-
-
-  def save_to_csv
-    filename = "output/queue_results.csv"
-
-
-
-  end
+# def save_thank_you_letters(id,form_letter)
+#   Dir.mkdir("output") unless Dir.exists?("output")
+#
+#   filename = "output/thanks_#{id}.html"
+#
+#   File.open(filename,'w') do |file|
+#     file.puts form_letter
+#   end
+# end
+#
+#
+#
+#   def save_to_csv
+#     filename = "output/#{chosen_name}.csv"
+#
+#     chosen_name = gets.split
+#
+#     File.
+#   end
 
 
 
