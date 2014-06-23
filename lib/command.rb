@@ -1,4 +1,7 @@
+require 'pry'
+
 class Command
+attr_reader :filename
 
   def initialize(filename)
     @filename = filename
@@ -8,9 +11,41 @@ class Command
     @filename
   end
 
-
+  def general_help
+    binding.pry
+    print "Here are your options:"
+  end
+  #
+  # def help_command
+  #   #output description of how to use the specific command
+  # end
+  #
+  # def queue_count
+  #   #output how many records are in the current queue
+  # end
+  #
+  # def queue_clear
+  #   #clear queue
+  # end
+  #
+  # def queue_print
+  #   #print out tab-delimited data table with header row (lastname, firstname, etc)
+  # end
+  #
+  # def queue_print_by_attribute
+  #   #print data table sorted by specified attribute
+  # end
+  #
+  # def queue_save_to_filename
+  #   #export current queue to specified filename as a CSV
+  # end
+  #
+  # def attribute_criteria
+  #   #load queue with all records matching criteria for the given attribute (ex. find zipcode 11111)
+  # end
 
 end
+
 
 
 # def self.read(filename, klass)
@@ -31,37 +66,3 @@ end
 #  end
 # end
 # Files
-
-
-
-def help
-  #output listing of available commands
-end
-
-def help_command
-  #output description of how to use the specific command
-end
-
-def queue_count
-  #output how many records are in the current queue
-end
-
-def queue_clear
-  #clear queue
-end
-
-def queue_print
-  #print out tab-delimited data table with header row (lastname, firstname, etc)
-end
-
-def queue_print_by_attribute
-  #print data table sorted by specified attribute
-end
-
-def queue_save_to_filename
-  #export current queue to specified filename as a CSV
-end
-
-def attribute_criteria
-  #load queue with all records matching criteria for the given attribute (ex. find zipcode 11111)
-end

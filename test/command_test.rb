@@ -1,120 +1,70 @@
 require_relative './test_helper'
-require_relative '../lib/Command'
+require_relative '../lib/command'
 
 class CommandTest < Minitest::Test
 
   def test_it_exists
-    assert Handler
+    assert Command
   end
 
   def test_it_takes_an_argument
     filename = 'event_attendees.csv'
-    repo = Handler.new(filename)
+    repo = Command.new(filename)
     assert_equal 'event_attendees.csv', repo.filename
   end
 
-  def test_can_load_file?
-    skip
-    Command = Command.new upload?
-    assert_equal :true
-
-  def filename
-    @filename ||= File.absolute_path("../data/event_attendees_test.csv", __FILE__)
-  end
-
-  def command
-    Command.read(filename)
-  end
-
-  def test_it_can_read_files
-
-  end
-
-  # def test_can_load_file?
-  #   Command = Command.new upload?
-  #   assert true
-  # end
-
-#   class DBTest < Minitest::Test
-#  class Thing
-#    attr_reader :id, :name
-#    def initialize(data)
-#      @id = data[:id]
-#      @name = data[:name]
-#    end
-#  end
-#
-#  def db
-#    DB.read(filename, Thing)
-#  end
-#
-#  def test_find_by_name
-#    things = db.find_by(:name, "tire")
-#    assert_equal 2, things.size
-#    assert_equal ["2", "3"], things.map(&:id)
-#  end
-# end
-
-
-
   def test_can_load_general_help_instructions
-    skip
-    Command = Command.new
-    Command.general_help
-    assert_equal "Help instructions", Command.general_help
+    command = Command.new(name)
+    assert_equal "Here are your options:", command.general_help
   end
 
   def test_can_load_help_command_instructions
     skip
-    Command = Command.new
+    command = Command.new
     Command.command_instructions
     assert_equal "(s)ave to que, (c)ount output, (cl)ear output (p)rint output", Command.command_instructions
-
   end
 
-  def test_can_count_record_output_in_current_Command
+  def test_can_count_record_output_in_current_command
     skip
-    Command = Command.new
+    command = Command.new
     Command.count_record_output
     assert_equal 1, Command.id
   end
 
-  def test_can_clear_the_Command?
+  def test_can_clear_the_command?
     skip
-    Command = Command.new
+    command = Command.new
     Command.clear
     assert true
-
   end
 
   def test_can_print_out_the_Command_with_header_data
     skip
-    Command = Command.new
+    command = Command.new
     Command.header_row.print
     assert_equal Command.print
   end
 
   def test_can_print_by_attribute
     skip
-    Command = Command.new
+    command = Command.new
     Command.attribute_print
   end
 
   def test_can_save_command_to_csv
     skip
-    Command = Command.new
-
+    command = Command.new
   end
 
   def test_can_search_csv_by_attribute
     skip
-    Command = Command.new
-
+    command = Command.new
   end
 
   def test_csv_objects_have_an_id
     skip
-    Command = Command.new
+    command = Command.new
   end
 
 end

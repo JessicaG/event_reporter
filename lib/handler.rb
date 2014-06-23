@@ -35,9 +35,9 @@ class Handler
   end
 
   #is there a gem for this?#
-  def clean_email_address(Email_Address)
-    email_address.include!(@ .)
-  end
+  # def clean_email_address(Email_Address)
+  #   email_address.include!(@ .)
+  # end
 
   def clean_state(State)
     state.upcase
