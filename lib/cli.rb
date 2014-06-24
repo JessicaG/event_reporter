@@ -7,7 +7,7 @@ class CLI
     @queue_command    = ""
     @find_command     = ""
     @parameters       = ""
-    @queue ||         = Command.new
+    @queue          ||= Command.new
     @event_reporter ||= EventReporter.new(@queue)
   end
 
@@ -19,24 +19,18 @@ class CLI
   end
 
   def run
-    input = ""
-    until input == "q"
-      print "(l)oad file, (h)elp, or (q)uit?: "
-      input = gets.strip
-
-       file                               if input == "l"
-      PrintCommand.help_command_instructions  if input == "h"
+    CLI.new
   end
-
 
   ##need to fill this out more, what we want it to do once we've initiated the new queue and started a new session, will go to run, then instructions?##
   def start
-    puts "Entry Reporter"
-    command = ''
-
+    input = gets.strip
     while command != 'q'
       puts "Please load a file:"
-      puts ''
+      command = ''
+      Command.load_file                       if input == "l"
+      PrintCommand.help_command_instructions  if input == "h"
+      end
     end
   end
 
@@ -54,7 +48,7 @@ class CLI
     case command
     when 'find #{attribute} #{value}' Command.find_by
     when 'load' repo  = AttendeeRepo.load(parameters, Attendee)
-      @event_reporter = EventRepo.new(repository, @queue)
+      @event_reporter = EventReporter.new(repository, @queue)
     when 'help'
       if @parameters == ''
         'help'

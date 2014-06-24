@@ -30,3 +30,7 @@ class CLITest < Minitest::Test
 #handler holds functionality we want to access
   end
 end
+
+
+###ask jeff why you need the first two lines repeated through the code for tests. why can't that be in a initalizer for tests?
+##do we need a test and method for each aspect or is the object and attribute okay?##
