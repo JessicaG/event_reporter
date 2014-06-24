@@ -1,7 +1,10 @@
+require 'csv'
+# require './command'
+
 class PrintCommand
 
   def general_help
-    output = "Here are your options: (q)uit, (p)rint queue, (s)ave queue to CSV, (c)ount records in your queue (cl)ear records in your queue, "
+    output = "Here are your options: (q)uit\n(p)rint queue,\n(s)ave queue to CSV\n(c)ount records in your queue\n(cl)ear records in your queue,"
     print output
     output
   end
@@ -19,13 +22,15 @@ class PrintCommand
   end
 
   def queue_print
-    ##prints data table##
-    output = "This is a test"
-    print output
-    output
+    if Command.queue == []
+      puts "Queue is empty"
+    else
+      puts Command.new.queue
+    end
   end
 
   def print_by(attribute, value)
     objects.print {|object| object.send(attribute) == value}
   end
+
 end

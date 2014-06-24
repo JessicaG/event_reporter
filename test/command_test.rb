@@ -2,15 +2,19 @@ require_relative './test_helper'
 require_relative '../lib/command'
 
 class CommandTest < Minitest::Test
+  attr_reader :command
+
+  def setup
+    filename = 'event_attendees.csv'
+    @command = Command.new(filename)
+  end
 
   def test_it_exists
     assert Command
   end
 
   def test_it_takes_an_argument
-    filename = 'event_attendees.csv'
-    repo = Command.new(filename)
-    assert_equal 'event_attendees.csv', repo.filename
+    assert_equal 'event_attendees.csv', command.filename
   end
 
   def test_can_count_record_output_in_current_queue
