@@ -18,7 +18,7 @@ class Command
   def queue_count
     @queue.count
   end
-  
+
   ##this seems repetitive to the def find_by(attribute, value).. is it needed?
   # def find_by_first_name(value)
   #   @queue << records.select { |record| record.first_name == value }
@@ -26,6 +26,9 @@ class Command
 
   def queue_clear
     @queue.clear
+  end
+
+  def queue_save
   end
 
 end
