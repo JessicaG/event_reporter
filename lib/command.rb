@@ -28,7 +28,8 @@ class Command
     @queue.clear
   end
 
-  def queue_save
+  def queue_save(filename)
+    @queue.save_to(filename)
   end
 
 end

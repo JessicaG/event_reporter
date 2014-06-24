@@ -3,7 +3,12 @@ class CLI
               :event_reporter
 
   def initialize
-    @command = ""
+    @command          = ""
+    @queue_command    = ""
+    @find_command     = ""
+    @parameters       = ""
+    @queue ||         = Command.new
+    @event_reporter ||= EventReporter.new(@queue)
   end
 
 
@@ -21,47 +26,43 @@ class CLI
 
        file                               if input == "l"
       PrintCommand.help_command_instructions  if input == "h"
-
   end
 
-  def execute_command
+
+  ##need to fill this out more, what we want it to do once we've initiated the new queue and started a new session, will go to run, then instructions?##
+  def start
+    puts "Entry Reporter"
+    command = ''
+
+    while command != 'q'
+      puts "Please load a file:"
+      puts ''
+    end
+  end
+
+
+  def execute_queue_command
     case command
     when 'queue count' Command.queue_count
-    when 'find #{attribute} #{value}' Command.find_by
     when 'queue clear' Command.queue_clear
     when 'queue print' Command.queue_print
     when 'queue print by #{attribute}' Command.print_by
     #when 'queue save to ??' Command.save
-
   end
 
-
-  # def assign_queue_instructions(parts)
-  #   case parts[1]
-  #   when 'count'
-  #     assign_queue_command(parts, 1)
-  #     assign_queue_parameters(parts, 1)
-  #   when 'clear'
-  #     assign_queue_command(parts, 1)
-  #     assign_queue_parameters(parts, 1)
-  #
-  #   when 'print'
-  #     assign_queue_command(parts, 1)
-  #     assign_queue_parameters(parts, 1)
-  #   end
-  #
-  #   case parts[1..2].join(" ")
-  #   when 'print by'
-  #     assign_queue_command(parts, 2)
-  #     assign_queue_parameters(parts, 2)
-  #
-  #   when 'save to'
-  #     assign_queue_command(parts, 2)
-  #     assign_queue_parameters(parts, 2)
-  #
-  #   end
-  # end
-
+  def execute_instructions
+    case command
+    when 'find #{attribute} #{value}' Command.find_by
+    when 'load' repo  = AttendeeRepo.load(parameters, Attendee)
+      @event_reporter = EventRepo.new(repository, @queue)
+    when 'help'
+      if @parameters == ''
+        'help'
+      else
+        PrintCommand.help_command_instructions
+      end
+    end
+  end
 
 # def load_filename
 #   puts "Welcome to Event Reporter.\nLet's load your CSV file; Type your file name:"
