@@ -1,5 +1,6 @@
 require 'pry'
 require 'terminal-table'
+require 'csv'
 
 class SearchCommand
   attr_reader :repo, :queue, :filename, :records
@@ -56,19 +57,23 @@ class SearchCommand
     puts "Cleared your queue"
   end
 
-  def queue_save(filename)
-    @queue.save_to(filename)
+  def queue_save_by(filename)
+    CSV.open(filename, 'w') do |csv|
+      csv << ['ID', 'RegDate', 'First Name', 'Last Name', 'Email Address', 'Home Phone', 'Street', 'City', 'State', 'Zip Code']
+      @queue.each do |a|
+      csv << ["#{a.id}",
+              "#{a.regdate}",
+              "#{a.first_name}",
+              "#{a.last_name}",
+              "#{a.email_address}",
+              "#{a.home_phone}",
+              "#{a.street}",
+              "#{a.city}",
+              "#{a.state}",
+              "#{a.zipcode}"]
+      end
+    end
   end
-
 end
 
-
-# def print_by(attribute)
-#   puts Boom!
-#   puts @queue.print_by
-#   objects.print {|object| object.send(attribute)}
-# end
-
-# def execute(@queue, parameters[3])
-#   @queue.sort_by(parameters[3])
-# end
+# queue.each {|x| x.to_s}

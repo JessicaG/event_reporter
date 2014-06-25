@@ -1,7 +1,6 @@
 require_relative 'print_command'
 require_relative 'search_command'
 require 'pry'
-# require 'terminal-table'
 
 class CLI
   attr_reader :search_command, :print_command
@@ -40,8 +39,6 @@ class CLI
   end
 
   def execute_queue_command(sub_command)
-    # parts = sub_command.split
-    # until command
     puts "sub command is #{sub_command[0]}"
     case sub_command[0]
       when 'count'
@@ -54,35 +51,11 @@ class CLI
             search_command.queue_print_by_attribute(sub_command[2])
         end
       search_command.queue_print
-      # when 'save'
-      #   case sub_command[1]
-      #     when 'as'
-      #       search_command.queue_save_by
-      #   end
+      when 'save'
+        case sub_command[1]
+        when 'to'
+            search_command.queue_save_by(sub_command[2])
+        end
     end
   end
 end
-
-# if parameters[2] == 'by'
-#   search_command.execute(queue, parameters[3])
-# else
-# def execute(@queue, parameters[3])
-#   @queue.sort_by(parameters[3])
-# end
-
-
-
-# case parts[1..2].join(" ")
-#     when 'print by'
-#       assign_queue_command(parts, 2)
-#       assign_queue_parameters(parts, 2)
-#
-#     when 'save to'
-#       assign_queue_command(parts, 2)
-#       assign_queue_parameters(parts, 2)
-#     end
-# #
-# # command = parts[0..1]
-# # parameters = parts[2..-1].join
-# # when "queue print_by"
-# #   search_command.print_by(parts[2])
