@@ -28,9 +28,7 @@ class PrintCommand
     output
   end
 
-  def queue_print
-    puts @queue
-  end
+
 
   def print_by(attribute, value)
     objects.print {|object| object.send(attribute) == value}

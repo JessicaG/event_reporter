@@ -1,4 +1,5 @@
 require 'pry'
+require 'terminal-table'
 
 class SearchCommand
   attr_reader :repo, :queue, :filename, :records
@@ -9,44 +10,43 @@ class SearchCommand
     @filename = filename
   end
 
-  #add in note for user that file is successfully loaded#
   def load_file
     @records
+    puts "Records have been successfully loaded"
+  end
+
+  def queue_print
+    rows = []
+    @queue.each do |a|
+      rows << ["#{a.id}",
+              "#{a.regdate}",
+              "#{a.first_name}",
+              "#{a.last_name}",
+              "#{a.email_address}",
+              "#{a.home_phone}",
+              "#{a.street}",
+              "#{a.city}",
+              "#{a.state}",
+              "#{a.zipcode}"]
+    end
+    table = Terminal::Table.new :title => "Queue Results", :headings => ['ID', 'RegDate', 'First Name', 'Last Name', 'Email Address', 'Home Phone', 'Street', 'City', 'State', 'Zip Code'], :rows => rows
+    puts table 
   end
 
   def queue_count
-    @records.count
+    @queue.count
+    puts "Found #{queue.count.to_s} results"
   end
 
-  # # def load_filename
-  # #   puts "Welcome to Event Reporter.\nLet's load your CSV file; Type your file name:"
-  # #   csv_file = gets.strip.downcase
-  # # end
-
   def find_by(attribute, value)
-
     @queue = records.select do |object|
       object.send(attribute).upcase == value.upcase
     end
-    puts "Queue is:"
-    puts @queue.to_s
   end
-
-  def find_by_first_name(value)
-    find_by(:name, value)
-  end
-
-  def find_by_last_name(value)
-    find_by(:name, value)
-  end
-
-  ###phone number, zip code, state, street, email, regdate###
-
-
-
 
   def queue_clear
     @queue.clear
+    puts "Cleared your queue"
   end
 
   def queue_save(filename)
