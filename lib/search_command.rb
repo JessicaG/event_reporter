@@ -30,8 +30,18 @@ class SearchCommand
               "#{a.zipcode}"]
     end
     table = Terminal::Table.new :title => "Queue Results", :headings => ['ID', 'RegDate', 'First Name', 'Last Name', 'Email Address', 'Home Phone', 'Street', 'City', 'State', 'Zip Code'], :rows => rows
-    puts table 
+    puts table
   end
+
+  def print_by(attribute)
+    puts Boom!
+    puts @queue.print_by
+    objects.print {|object| object.send(attribute)}
+  end
+
+  # def execute(@queue, parameters[3])
+  #   @queue.sort_by(parameters[3])
+  # end
 
   def queue_count
     @queue.count
@@ -49,8 +59,10 @@ class SearchCommand
     puts "Cleared your queue"
   end
 
+
   def queue_save(filename)
     @queue.save_to(filename)
   end
+
 
 end

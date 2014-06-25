@@ -40,6 +40,8 @@ class CLI
   end
 
   def execute_queue_command(sub_command)
+    # parts = sub_command.split
+    # until command
     puts "sub command is #{sub_command}"
     case sub_command
     when 'count'
@@ -48,9 +50,32 @@ class CLI
       search_command.queue_clear
     when 'print'
       search_command.queue_print
-    # when 'print by'
-    #   print_command.print_by
+    # when parts[0..1].join == 'printby'
+    #   search_command.print_by(parts[2].to_s)
+  when "printby#{value}"
+      puts "PRINTED"
     end
   end
 
 end
+
+# if parameters[2] == 'by'
+#   search_command.execute(queue, parameters[3])
+# else
+
+
+
+# case parts[1..2].join(" ")
+#     when 'print by'
+#       assign_queue_command(parts, 2)
+#       assign_queue_parameters(parts, 2)
+#
+#     when 'save to'
+#       assign_queue_command(parts, 2)
+#       assign_queue_parameters(parts, 2)
+#     end
+# #
+# # command = parts[0..1]
+# # parameters = parts[2..-1].join
+# # when "queue print_by"
+# #   search_command.print_by(parts[2])

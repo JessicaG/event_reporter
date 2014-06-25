@@ -29,9 +29,4 @@ class PrintCommand
   end
 
 
-
-  def print_by(attribute, value)
-    objects.print {|object| object.send(attribute) == value}
-  end
-
 end
