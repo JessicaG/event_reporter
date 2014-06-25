@@ -10,5 +10,7 @@ class AttendeeRepo
 
   def build_records
     csv.each { |row| @records << Attendee.build(row) }
+    records
   end
+
 end

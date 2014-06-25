@@ -1,8 +1,7 @@
 require 'pry'
-require_relative './attendee_repo'
 
-class Command
-  attr_reader :repo, :queue, :filename
+class SearchCommand
+  attr_reader :repo, :queue, :filename, :records
 
   def initialize
     @records  = AttendeeRepo.new.build_records
@@ -10,8 +9,8 @@ class Command
     @filename = filename
   end
 
+  #add in note for user that file is successfully loaded#
   def load_file
-    # binding.pry
     @records
   end
 
@@ -25,7 +24,12 @@ class Command
   # # end
 
   def find_by(attribute, value)
-    objects.select {|object| object.send(attribute) == value}
+
+    @queue = records.select do |object|
+      object.send(attribute).upcase == value.upcase
+    end
+    puts "Queue is:"
+    puts @queue.to_s
   end
 
   def find_by_first_name(value)

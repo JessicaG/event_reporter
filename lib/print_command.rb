@@ -1,7 +1,14 @@
 require 'csv'
-# require './command'
+require_relative './search_command'
 
 class PrintCommand
+  attr_reader :repo, :queue, :filename
+
+  def initialize
+    @records  = AttendeeRepo.new.build_records
+    @queue    = []
+    @filename = filename
+  end
 
   def general_help
     output = "Here are your options: (q)uit\n(p)rint queue,\n(s)ave queue to CSV\n(c)ount records in your queue\n(cl)ear records in your queue,"
@@ -22,11 +29,7 @@ class PrintCommand
   end
 
   def queue_print
-    if Command.queue == []
-      puts "Queue is empty"
-    else
-      puts Command.new.queue
-    end
+    puts @queue
   end
 
   def print_by(attribute, value)
