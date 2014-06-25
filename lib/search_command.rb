@@ -33,15 +33,12 @@ class SearchCommand
     puts table
   end
 
-  def print_by(attribute)
-    puts Boom!
-    puts @queue.print_by
-    objects.print {|object| object.send(attribute)}
+  def queue_print_by_attribute(attribute)
+    queue.sort_by! do |record|
+      record.send(attribute)
+    end
+    queue_print
   end
-
-  # def execute(@queue, parameters[3])
-  #   @queue.sort_by(parameters[3])
-  # end
 
   def queue_count
     @queue.count
@@ -59,10 +56,19 @@ class SearchCommand
     puts "Cleared your queue"
   end
 
-
   def queue_save(filename)
     @queue.save_to(filename)
   end
 
-
 end
+
+
+# def print_by(attribute)
+#   puts Boom!
+#   puts @queue.print_by
+#   objects.print {|object| object.send(attribute)}
+# end
+
+# def execute(@queue, parameters[3])
+#   @queue.sort_by(parameters[3])
+# end

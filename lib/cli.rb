@@ -23,7 +23,7 @@ class CLI
       print "\nEnter your command: "
       parts      = gets.strip.split
       command    = parts[0]
-      parameters = parts[1..-1].join
+      parameters = parts[1..-1]
       puts "command is #{command}"
       case command
         when "load"
@@ -42,26 +42,33 @@ class CLI
   def execute_queue_command(sub_command)
     # parts = sub_command.split
     # until command
-    puts "sub command is #{sub_command}"
-    case sub_command
-    when 'count'
-      count = search_command.queue_count
-    when 'clear'
-      search_command.queue_clear
-    when 'print'
+    puts "sub command is #{sub_command[0]}"
+    case sub_command[0]
+      when 'count'
+        count = search_command.queue_count
+      when 'clear'
+        search_command.queue_clear
+      when 'print'
+        case sub_command[1]
+          when 'by'
+            search_command.queue_print_by_attribute(sub_command[2])
+        end
       search_command.queue_print
-    # when parts[0..1].join == 'printby'
-    #   search_command.print_by(parts[2].to_s)
-  when "printby#{value}"
-      puts "PRINTED"
+      # when 'save'
+      #   case sub_command[1]
+      #     when 'as'
+      #       search_command.queue_save_by
+      #   end
     end
   end
-
 end
 
 # if parameters[2] == 'by'
 #   search_command.execute(queue, parameters[3])
 # else
+# def execute(@queue, parameters[3])
+#   @queue.sort_by(parameters[3])
+# end
 
 
 
