@@ -1,7 +1,7 @@
 class Cleaner
 
   def id(id)
-    id
+    id.to_i
   end
 
   def regdate(regdate)

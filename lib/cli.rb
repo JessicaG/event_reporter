@@ -1,4 +1,3 @@
-require_relative 'print_command'
 require_relative 'search_command'
 require 'pry'
 

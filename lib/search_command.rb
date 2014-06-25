@@ -48,7 +48,7 @@ class SearchCommand
 
   def find_by(attribute, value)
     @queue = records.select do |object|
-      object.send(attribute).upcase == value.upcase
+      object.send(attribute).to_s.upcase == value.upcase
     end
   end
 
@@ -76,7 +76,7 @@ class SearchCommand
   end
 
   private
-  
+
   def create_filename(filename)
     "output/#{filename}.csv"
   end
