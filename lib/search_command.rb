@@ -58,7 +58,7 @@ class SearchCommand
   end
 
   def queue_save_by(filename)
-    CSV.open(filename, 'w') do |csv|
+    CSV.open(create_filename(filename), 'w') do |csv|
       csv << ['ID', 'RegDate', 'First Name', 'Last Name', 'Email Address', 'Home Phone', 'Street', 'City', 'State', 'Zip Code']
       @queue.each do |a|
       csv << ["#{a.id}",
@@ -73,6 +73,12 @@ class SearchCommand
               "#{a.zipcode}"]
       end
     end
+  end
+
+  private
+  
+  def create_filename(filename)
+    "output/#{filename}.csv"
   end
 end
 
