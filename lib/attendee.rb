@@ -21,7 +21,7 @@ class Attendee
     @first_name     = cleaner.first_name(row[:first_name])
     @last_name      = cleaner.last_name(row[:last_name])
     @email_address  = cleaner.email_address(row[:email_address])
-    @homephone     = cleaner.homephone(row[:homephone])
+    @homephone      = cleaner.homephone(row[:homephone])
     @street         = cleaner.street(row[:street])
     @city           = cleaner.city(row[:city])
     @state          = cleaner.state(row[:state])

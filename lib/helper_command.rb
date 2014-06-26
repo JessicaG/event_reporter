@@ -4,14 +4,15 @@ require_relative './search_command'
 class PrintCommand
 
   def general_help
-    output = "Here are your options:\n
-              (find <attribute>) to find records in your file by their header line,\n
-              (queue count) to discover the number of records in your current queue,\n
-              (queue print) to display the records in your queue,\n
-              (queue print by <attribute>) displays your queue sorted by the specified attribute like zipcode,\n
-              (queue save to <example_filename>) to save your current queue to a csv with a specified filename,\n
-              (queue clear) remove all the records in your current queue,\n
-              (quit) to leave the program completely.\n"
+    output = "\nHere are your options:\n
+              (find <attribute>) to find records in your file by their header line,
+              (queue count) to discover the number of records in your current queue,
+              (queue print) to display the records in your queue,
+              (queue print by <attribute>) displays your queue sorted by the specified attribute /such as zipcode/,
+              (queue save to <example_filename>) to save your current queue to a csv with a specified filename,
+              (queue clear) remove all the records in your current queue,
+              (quit) to leave the application completely.\n
+              Type (help <option name>) to get more info.\n"
     print output
     # output
   end

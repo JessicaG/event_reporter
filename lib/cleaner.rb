@@ -45,10 +45,3 @@ class Cleaner
     zipcode.to_s.rjust(5,"0")[0..4]
   end
 end
-
-##extras if time permits##
-
-  #is there a gem for this?#
-  # def email_address(Email_Address)
-  #   email_address.include!(@ .)
-  # end

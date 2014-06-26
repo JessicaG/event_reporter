@@ -1,4 +1,3 @@
-require 'pry'
 require 'terminal-table'
 require 'csv'
 
@@ -12,8 +11,18 @@ class SearchCommand
   end
 
   def load_file
-    @records
-    puts "CSV has been successfully loaded."
+    puts "Type full filename or type (default) to load event_attendees.csv.
+          Make sure your file is in the data repository."
+      loadfile = gets.strip.downcase
+    if loadfile == "default"
+      @records
+    # elsif loadfile != include? (".csv")
+    #   puts "Invalid file format."
+    else
+      @records = []
+      @records = AttendeeRepo.new("data/#{loadfile}").build_records
+    end
+      puts "\nFile has been loaded successfully.".colorize(:green)
   end
 
   def queue_print
@@ -43,19 +52,19 @@ class SearchCommand
 
   def queue_count
     @queue.count
-    puts "Found #{queue.count.to_s} results."
+    puts "There are #{queue.count.to_s} records currently in your queue."
   end
 
   def find_by(attribute, value)
     @queue = records.select do |object|
       object.send(attribute).to_s.upcase == value.upcase
     end
-    puts "#{queue.count.to_s} records found."
+    puts "\n#{queue.count.to_s} records found. Type (queue print) to view them."
   end
 
   def queue_clear
     @queue.clear
-    puts "Cleared your queue"
+    puts "\nCleared. There are no records in your queue.".colorize(:green)
   end
 
   def queue_save_by(filename)
