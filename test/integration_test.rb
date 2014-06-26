@@ -1,39 +1,15 @@
 require_relative './test_helper'
-require_relative '../lib/event_reporter'
+require_relative '../lib/search_command'
+require_relative '../lib/_command'
+
 
 class IntegrationTest < Minitest::Test
-  attr_reader :repository, :phone_book
+  attr_reader :attendee_repo
 
-  # def setup
-  #   @repository = EntryRepository.in('./test/fixtures')
-  #   @phone_book = PhoneBook.new(repository)
-  # end
 
-  def test_lookup_by_last_name
-    entries = phone_book.('Smith').sort_by {|e| e.first_name}
-    assert_equal 2, entries.length
-    e1, e2 = entries
-    assert_equal "Alice Smith", e1.name
-    assert_equal "Bob Smith", e2.name
-    assert_equal ["(111) 000-1234"], e1.numbers
-    assert_equal ["(222) 000-1234", "(222) 001-1234"], e2.numbers.sort
+
+  def test_can_search_case_insensitive_data
+    Cleaner.new
   end
 
-  # def test_lookup_by_last_and_first_name
-  #   entries = phone_book.lookup('Jones, Charlie').sort_by {|e| e.numbers.length }
-  #   assert_equal 2, entries.length
-  #   e1, e2 = entries
-  #   assert_equal ['(444) 000-1234'], e1.numbers
-  #   assert_equal ['(333) 000-1234', '(333) 001-1234'], e2.numbers.sort
-  # end
-
-  def test_reverse_lookup
-    entries = phone_book.reverse_lookup('(333) 001-1234').sort_by {|e| e.name }
-    assert_equal 2, entries.length
-    e1, e2 = entries
-    assert_equal "Charlie Jones", e1.name
-    assert_equal ["(333) 000-1234", "(333) 001-1234"], e1.numbers.sort
-    assert_equal "David Jones", e2.name
-    assert_equal ["(333) 001-1234", "(555) 000-1234"], e2.numbers.sort
-  end
 end

@@ -4,33 +4,64 @@ require_relative '../lib/cli'
 class CLITest < Minitest::Test
   attr_reader :cli
 
-  # def setup
-  #   repository = EntryRepository.in("./test/fixtures")
-  #   phone_book = PhoneBook.new(repository)
-  #   @cli ||= CLI.new(phone_book)
-  # end
-
-  def test_it_exists
-    assert cli
+  def test_it_loads_a_data_file
+      assert cli.search_command.empty?
+      cli.load('../data/sample_attendees.csv')
+      refute cli.search_command.empty?
   end
 
-  def test_it_has_a_command
-#command will store current instrucitons
-  skip
-    assert cli.command
+  def test_it_finds_by_first_name
+    cli.load('../data/sample_attendees.csv')
+    cli.add(cli.search_command.find_by_first_name("Aya"))
+    assert_equal 1, cli.length
+    cli.each do |record|
+      assert_equal "Aya", entry.first_name
+    end
   end
 
-  def test_it_has_parameters
-#parameters will be args for that command
-  skip
-    assert cli.parameters
+  def test_it_finds_by_last_name
+    cli.load('./test_attendees.csv')
+    cli.add(cli.search_command.find_by_last_name("Fuller"))
+    assert_equal 1 , cli.length
+    cli.each do |record|
+      assert_equal "Fuller", entry.last_name
+    end
   end
 
-  def test_it_has_a_handler
-#handler holds functionality we want to access
+  def test_it_finds_by_state
+    cli.load('./test_attendees.csv')
+    cli.add(cli.search_command.find_by_state("BC"))
+    assert_equal 1 , cli.length
+    cli.each do |record|
+      assert_equal "BC", entry.state
+    end
   end
+
+  def test_it_finds_by_zipcode
+    cli.load('./test_attendees.csv')
+    cli.add(cli.search_command.find_by_zipcode("90210"))
+    assert_equal 1 , cli.length
+    cli.each do |record|
+      assert_equal "90210", entry.zipcode
+    end
+  end
+
+  def test_it_finds_by_city
+    cli.load('./test_attendees.csv')
+    cli.add(cli.search_command.find_by_city("Vancouver"))
+    assert_equal 1 , cli.length
+    cli.each do |record|
+      assert_equal "Vancouver", entry.city
+    end
+  end
+
+  def test_it_finds_multiple_records_by_first_name
+    cli.load('./test_attendees.csv')
+    cli.add(cli.container.find_by_first_name('Jessica'))
+    assert_equal 50, cli.length
+    cli.each do |jessica|
+      assert_equal "Jessica", jessica.first_name
+    end
+  end
+
 end
-
-
-###ask jeff why you need the first two lines repeated through the code for tests. why can't that be in a initalizer for tests?
-##do we need a test and method for each aspect or is the object and attribute okay?##

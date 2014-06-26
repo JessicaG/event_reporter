@@ -1,6 +1,7 @@
 require_relative 'search_command'
 require 'colorize'
 require_relative 'output_printer'
+require 'pry'
 
 class CLI
   attr_reader :search_command
@@ -22,12 +23,13 @@ class CLI
       parts      = gets.strip.split
       command    = parts[0]
       parameters = parts[1..-1]
+
       case command
-        when "load" then search_command.load_file
-        when "help" then execute_help_command(parameters)
-        when "queue" then execute_queue_command(parameters)
-        when "find" then search_command.find_by(parts[1], parts[2..-1].join(" "))
-        when "quit" then execute_quit_command
+      when "load"  then search_command.load_file
+      when "help"  then execute_help_command(parameters)
+      when "queue" then execute_queue_command(parameters)
+      when "find"  then search_command.find_by(parts[1], parts[2..-1].join(" "))
+      when "quit"  then execute_quit_command
       else
         puts OutputPrinter.invalid_command_message
       end
@@ -53,7 +55,6 @@ class CLI
       end
     end
   end
-
 
   def execute_queue_command(sub_command)
     case sub_command[0]
