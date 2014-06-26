@@ -25,50 +25,42 @@ class CLI
       command    = parts[0]
       parameters = parts[1..-1]
       case command
-        when "load"
-          search_command.load_file
-          # OutputPrinter.records_loaded_message
-        when "help"
-          execute_help_command(parameters)
-        when "queue"
-          execute_queue_command(parameters)
-        when "find"
-          search_command.find_by(parts[1], parts[2])
-        # when "quit"
-        #   exit
-        else
-          puts "That's not an option.  Try again or type (help)."
-        #   # OutputPrinter.queue_results_message_count
+        when "load" then search_command.load_file
+        when "help" then execute_help_command(parameters)
+        when "queue" then execute_queue_command(parameters)
+        when "find" then search_command.find_by(parts[1], parts[2])
+      else
+        puts OutputPrinter.invalid_command_message
       end
     end
     OutputPrinter.outro_message
   end
 
   def execute_help_command(sub_command)
-    case sub_command[0]
-    when 'queue'
-      # find
-      # count
-      # print
-      # print by
-      # save to
-      # clear
+    if sub_command.length < 1 then OutputPrinter.help_options_message
+      case sub_command[0]
+        when 'queue'
+          case sub_command[1]
+            when 'count' then OutputPrinter.help_queue_count_message
+            when 'clear' then OutputPrinter.help_queue_clear_message
+            when 'print' then OutputPrinter.help_queue_print_message
+            when 'save' then OutputPrinter.help_queue_save_to_message
+          end
+        when 'find' then OutputPrinter.help_find_message
+      end
     end
   end
 
 
   def execute_queue_command(sub_command)
     case sub_command[0]
-      when 'count'
-        count = search_command.queue_count
-      when 'clear'
-        search_command.queue_clear
+      when 'count' then count = search_command.queue_count
+      when 'clear' then search_command.queue_clear
       when 'print'
         case sub_command[1]
-          when 'by'
-            search_command.queue_print_by_attribute(sub_command[2])
+          when 'by' then search_command.queue_print_by_attribute(sub_command[2])
         end
-        search_command.queue_print
+      search_command.queue_print
       when 'save'
         case sub_command[1]
           when 'to'

@@ -56,7 +56,7 @@ module OutputPrinter
           (quit) to leave the program completely.\n"
   end
 
-  def self.help_queue_find_message
+  def self.help_find_message
     puts "To search by a certain attribute, you must mimic your attribute how it is specificed in your header CSV file ie first_name or homephone"
   end
 
