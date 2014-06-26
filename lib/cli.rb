@@ -33,14 +33,12 @@ class CLI
         when "queue"
           execute_queue_command(parameters)
         when "find"
-          search_command.find_by(parts[1], parts[2]
-        when "quit"
-          exit
+          search_command.find_by(parts[1], parts[2])
+        # when "quit"
+        #   exit
         else
           puts "That's not an option.  Try again or type (help)."
-          # OutputPrinter.queue_results_message_count
-        else
-          # OutputPrinter.invalid_command_message
+        #   # OutputPrinter.queue_results_message_count
       end
     end
     OutputPrinter.outro_message
@@ -79,4 +77,4 @@ class CLI
     end
   end
 
-  end
+end
