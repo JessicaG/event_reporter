@@ -1,2 +1,1 @@
-test 6-22
-this is s a test
+Event Reporter is a program with a CLI that allows you to upload, read and evaluate CSV files. The default value if you have none is in the data file. This will allow you to save select pieces of your file to a seperate CSV very easily with with what you load into your queue. 
