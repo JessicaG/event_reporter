@@ -1,47 +1,61 @@
 require_relative 'search_command'
+require_relative 'output_printer'
 require 'pry'
 
 class CLI
-  attr_reader :search_command, :print_command
+  include OutputPrinter
+
+  attr_reader :search_command
 
   def initialize
     @search_command = SearchCommand.new
-    @print_command  = PrintCommand.new
   end
 
   def process_input(input)
     input.split
   end
 
-  #how to clear/push your prompt to clear when program is started#
   def run
-    puts "\nWelcome to Event Reporter, the easiest way to search your CSV file!\nStart by (load)ing your file, go to (help) or (quit) to leave."
+    system 'clear'
+    OutputPrinter.intro_message
     command = ''
     until command == 'quit'
-      print "\nEnter your command: "
+      OutputPrinter.initial_prompt
       parts      = gets.strip.split
       command    = parts[0]
       parameters = parts[1..-1]
-      puts "command is #{command}"
       case command
         when "load"
           search_command.load_file
+          # OutputPrinter.records_loaded_message
         when "help"
-          print_command.general_help
+          execute_help_command(parameters)
         when "queue"
           execute_queue_command(parameters)
         when "find"
           search_command.find_by(parts[1], parts[2])
+          # OutputPrinter.queue_results_message_count
         else
-          puts "That's not an option.  Try again."
-          
+          # OutputPrinter.invalid_command_message
       end
     end
-    puts "\nGood Bye.\n"
+    OutputPrinter.outro_message
   end
 
+  def execute_help_command(sub_command)
+    case sub_command[0]
+    when 'queue'
+      # find
+      # count
+      # print
+      # print by
+      # save to
+      # clear
+    end
+  end
+
+
   def execute_queue_command(sub_command)
-    puts "sub command is #{sub_command[0]}"
     case sub_command[0]
       when 'count'
         count = search_command.queue_count
@@ -61,4 +75,5 @@ class CLI
         end
     end
   end
-end
+
+  end
