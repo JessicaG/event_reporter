@@ -1,11 +1,13 @@
 require 'terminal-table'
 require 'csv'
+require_relative './output_printer'
 
 class SearchCommand
+
   attr_reader :repo, :queue, :filename, :records
 
   def initialize
-    @records  = AttendeeRepo.new.build_records
+    @records  = nil
     @queue    = []
     @filename = filename
   end
@@ -15,9 +17,7 @@ class SearchCommand
           Make sure your file is in the data repository."
       loadfile = gets.strip.downcase
     if loadfile == "default"
-      @records
-    # elsif loadfile != include? (".csv")
-    #   puts "Invalid file format."
+      @records = AttendeeRepo.new.build_records
     else
       @records = []
       @records = AttendeeRepo.new("data/#{loadfile}").build_records
@@ -56,8 +56,12 @@ class SearchCommand
   end
 
   def find_by(attribute, value)
-    @queue = records.select do |object|
-      object.send(attribute).to_s.upcase == value.upcase
+    if records.nil?
+      OutputPrinter.invalid_command_message
+    else
+      @queue = records.select do |object|
+        object.send(attribute).to_s.upcase == value.upcase
+      end
     end
     puts "\n#{queue.count.to_s} records found. Type (queue print) to view them."
   end
