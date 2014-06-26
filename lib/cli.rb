@@ -3,8 +3,6 @@ require 'colorize'
 require_relative 'output_printer'
 
 class CLI
-  include OutputPrinter
-
   attr_reader :search_command
 
   def initialize
@@ -29,11 +27,16 @@ class CLI
         when "help" then execute_help_command(parameters)
         when "queue" then execute_queue_command(parameters)
         when "find" then search_command.find_by(parts[1], parts[2..-1].join(" "))
+        when "quit" then execute_quit_command
       else
         puts OutputPrinter.invalid_command_message
       end
     end
     OutputPrinter.outro_message
+  end
+
+  def execute_quit_command
+    exit
   end
 
   def execute_help_command(sub_command)

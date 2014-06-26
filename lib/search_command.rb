@@ -27,6 +27,7 @@ class SearchCommand
       else
         puts "Invalid command."
       end
+    end
   end
 
   def queue_print
