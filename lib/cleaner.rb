@@ -20,13 +20,12 @@ class Cleaner
     email_address
   end
 
-  def home_phone(home_phone)
-    home_phone = home_phone.to_s
-    home_phone.gsub!(".()-,+_ ", '')
-    if home_phone.length < 10
+  def homephone(homephone)
+    homephone = homephone.scan(/\d/).join
+    if homephone.length < 10
       "0000000000"
     else
-      home_phone[-9..-1]
+      homephone[-10..-1]
     end
   end
 

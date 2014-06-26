@@ -13,7 +13,7 @@ class SearchCommand
 
   def load_file
     @records
-    puts "Records have been successfully loaded"
+    puts "CSV has been successfully loaded."
   end
 
   def queue_print
@@ -24,7 +24,7 @@ class SearchCommand
               "#{a.first_name}",
               "#{a.last_name}",
               "#{a.email_address}",
-              "#{a.home_phone}",
+              "#{a.homephone}",
               "#{a.street}",
               "#{a.city}",
               "#{a.state}",
@@ -43,13 +43,14 @@ class SearchCommand
 
   def queue_count
     @queue.count
-    puts "Found #{queue.count.to_s} results"
+    puts "Found #{queue.count.to_s} results."
   end
 
   def find_by(attribute, value)
     @queue = records.select do |object|
       object.send(attribute).to_s.upcase == value.upcase
     end
+    puts "#{queue.count.to_s} records found."
   end
 
   def queue_clear
@@ -66,7 +67,7 @@ class SearchCommand
               "#{a.first_name}",
               "#{a.last_name}",
               "#{a.email_address}",
-              "#{a.home_phone}",
+              "#{a.homephone}",
               "#{a.street}",
               "#{a.city}",
               "#{a.state}",
@@ -81,5 +82,3 @@ class SearchCommand
     "output/#{filename}.csv"
   end
 end
-
-# queue.each {|x| x.to_s}

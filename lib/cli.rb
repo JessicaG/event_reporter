@@ -15,7 +15,7 @@ class CLI
 
   #how to clear/push your prompt to clear when program is started#
   def run
-    puts "Welcome to Event Reporter, the easiest way to look at your CSV file!\nStart by (load)ing your file, go to (help) or (quit) to leave."
+    puts "\nWelcome to Event Reporter, the easiest way to search your CSV file!\nStart by (load)ing your file, go to (help) or (quit) to leave."
     command = ''
     until command == 'quit'
       print "\nEnter your command: "
@@ -43,8 +43,9 @@ class CLI
       when 'count'
         count = search_command.queue_count
       when 'clear'
-        search_command.queue_clear
+          search_command.queue_clear
       when 'print'
+
         case sub_command[1]
           when 'by'
             search_command.queue_print_by_attribute(sub_command[2])
