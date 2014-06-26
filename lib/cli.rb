@@ -28,7 +28,7 @@ class CLI
         when "load" then search_command.load_file
         when "help" then execute_help_command(parameters)
         when "queue" then execute_queue_command(parameters)
-        when "find" then search_command.find_by(parts[1], parts[2])
+        when "find" then search_command.find_by(parts[1], parts[2..-1].join(" "))
       else
         puts OutputPrinter.invalid_command_message
       end

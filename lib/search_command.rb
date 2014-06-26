@@ -65,7 +65,7 @@ class SearchCommand
 
   def find_by(attribute, value)
     @queue = records.select do |object|
-      object.send(attribute).to_s.upcase == value.upcase
+      object.send(attribute).to_s.upcase == value.to_s.upcase
     end
     puts "\n#{queue.count.to_s} records found. Type (queue print) to view them."
   end
