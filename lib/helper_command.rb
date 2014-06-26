@@ -5,16 +5,15 @@ class PrintCommand
 
   def general_help
     output = "Here are your options:\n
-              \n
-              (quit) to leave the program completely,\n
-              (queue find <attribute>) to find records in your file by their header line,\n
-              (queue count) the records in your current queue,\n
-              (queue print) to show the records in your queue to your screen,\n
-              (queue print by <attribute>) Prints your data table sorted by the specified attribute like zipcode,\n
-              (queue save to samplefilename) to save your current queue to a csv with a specified filename,\n
-              (queue clear) the records in your current queue.\n"
+              (find <attribute>) to find records in your file by their header line,\n
+              (queue count) to discover the number of records in your current queue,\n
+              (queue print) to display the records in your queue,\n
+              (queue print by <attribute>) displays your queue sorted by the specified attribute like zipcode,\n
+              (queue save to <example_filename>) to save your current queue to a csv with a specified filename,\n
+              (queue clear) remove all the records in your current queue,\n
+              (quit) to leave the program completely.\n"
     print output
-    output
+    # output
   end
 
   def help_with_shell_commands
@@ -32,7 +31,7 @@ class PrintCommand
     when "help clear" || "help queue clear"
       puts 'This will clear your current queue'
       else
-        puts "That is not a valid command, please try again. <help> lists out the commands available."
+      puts "That is not a valid command, please try again. <help> lists out the commands available."
       end
   end
 

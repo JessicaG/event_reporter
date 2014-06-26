@@ -32,6 +32,9 @@ class CLI
           execute_queue_command(parameters)
         when "find"
           search_command.find_by(parts[1], parts[2])
+        else
+          puts "That's not an option.  Try again."
+          
       end
     end
     puts "\nGood Bye.\n"
