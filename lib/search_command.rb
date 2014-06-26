@@ -46,6 +46,9 @@ class SearchCommand
   end
 
   def queue_print
+    if @queue.empty?
+      puts "Sorry, your queue is empty.  Try (find by)"
+    else
     rows = []
     @queue.each do |a|
       rows << [
@@ -63,6 +66,7 @@ class SearchCommand
     end
     table = Terminal::Table.new :title => "Queue Results", :headings => ['ID', 'RegDate', 'First Name', 'Last Name', 'Email Address', 'Home Phone', 'Street', 'City', 'State', 'Zip Code'], :rows => rows
     puts table
+  end
   end
 
   def queue_print_by_attribute(attribute)
