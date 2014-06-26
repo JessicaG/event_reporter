@@ -11,19 +11,27 @@ class SearchCommand
   end
 
   def load_file
-    puts "Type full filename or type (default) to load event_attendees.csv.
+    puts "Type (load <filename>) for your own file or type (load) to load event_attendees.csv.
           Make sure your file is in the data repository."
-      loadfile = gets.strip.downcase
-    if loadfile == "default"
-      @records
+      parts = gets.strip.downcase.split
+      if parts [0] == "load"
+        if parts[1] == nil
+          @records
+        else
+          @records = []
+          @records = AttendeeRepo.new("data/#{parts[1]}").build_records
+        end
+        puts "\nFile has been loaded successfully.".colorize(:green)
+      else
+        puts "Invalid command."
+      end
+  end
+
+    # elsif parts[2].exists?
+
     # elsif loadfile != include? (".csv")
     #   puts "Invalid file format."
-    else
-      @records = []
-      @records = AttendeeRepo.new("data/#{loadfile}").build_records
-    end
-      puts "\nFile has been loaded successfully.".colorize(:green)
-  end
+
 
   def queue_print
     rows = []
